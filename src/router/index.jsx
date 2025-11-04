@@ -75,6 +75,14 @@ const mainRoutes = [
       </Suspense>
     )
   },
+{
+    path: "patients/new",
+    element: (
+      <Suspense fallback={<LoadingFallback />}>
+        <Patients />
+      </Suspense>
+    )
+  },
   {
     path: "*",
     element: (

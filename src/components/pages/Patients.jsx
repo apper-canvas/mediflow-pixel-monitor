@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import ApperIcon from "@/components/ApperIcon";
@@ -13,13 +14,13 @@ import Empty from "@/components/ui/Empty";
 import patientService from "@/services/api/patientService";
 
 const Patients = () => {
+const navigate = useNavigate();
   const [patients, setPatients] = useState([]);
   const [filteredPatients, setFilteredPatients] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
-
   const loadPatients = async () => {
     try {
       setLoading(true);
@@ -74,8 +75,8 @@ const Patients = () => {
     toast.info(`Editing ${patient.firstName} ${patient.lastName}`);
   };
 
-  const handleNewPatient = () => {
-    toast.info("Opening new patient registration form");
+const handleNewPatient = () => {
+    navigate("/patients/new");
   };
 
   const getStatusCounts = () => {
